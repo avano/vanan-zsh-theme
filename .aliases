@@ -1,0 +1,45 @@
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+export REPO="/home/avano/work/git/jbossqe-fuse"
+export GA="/home/avano/work/GA/jboss-eap-6.1"
+export GIT="/home/avano/work/git"
+export GITHUB="/home/avano/work/git/github"
+export WORK="/home/avano/work"
+export PATCHES="/home/avano/work/patches"
+export CONSOLES="$REPO/consoles"
+export FAFRAM="$GIT/gitlab/fafram"
+export DIST="$WORK/dist"
+export FUSE="/home/avano/work/fuse"
+alias mvn="mvn-color"
+alias mvncist="mvn clean install -DskipTests=true"
+alias mvnci="mvn clean install"
+alias mvndebug='mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -Xnoagent -Djava.compiler=NONE" clean install'
+alias initssh="ssh-add ~/.ssh/id_rsa.key"
+alias cleanBoot="sudo apt-get remove --purge $(dpkg -l 'linux-image-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d')"
+alias mkdir='mkdir -pv'
+alias .='ll'
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias gs='git status'
+alias gd='git diff'
+alias commit='git commit -am'
+alias amend='git add -A; git commit --amend'
+alias tests='find src/test/java -name *.java | xargs grep "@Test" -A 1 --no-group-separator | grep -v "@Test" | sed "s/.*\s\(.*\)().*/\1/"'
+alias fuse621='rm -rf jboss-fuse-6.2.1.redhat-084; unzip $DIST/jboss-fuse-full-6.2.1.redhat-084.zip; cd jboss-fuse-6.2.1.redhat-084; sed -i 's_#admin_admin_g' etc/users.properties'
+alias fuse62='rm -rf jboss-fuse-6.2.0.redhat-133; unzip $DIST/jboss-fuse-full-6.2.0.redhat-133.zip; cd jboss-fuse-6.2.0.redhat-133; sed -i 's_#admin_admin_g' etc/users.properties'
+alias fuse61='rm -rf jboss-fuse-6.1.0.redhat-379; unzip $DIST/jboss-fuse-full-6.1.0.redhat-379.zip; cd jboss-fuse-6.1.0.redhat-379; sed -i s_#admin_admin_g etc/users.properties; sed -i s#,hawtio#,hawtio-offline#g etc/org.apache.karaf.features.cfg'
+alias instance="sed -i 's#61616#61617#g' etc/system.properties; sed -i 's#8181#8182#g' etc/system.properties; sed -i 's#8181#8182#g' etc/org.ops4j.pax.web.cfg; sed -i 's#8101#8102#g' etc/org.apache.karaf.shell.cfg; sed -i 's#1099#1098#g' etc/org.apache.karaf.management.cfg; sed -i 's#44444#44445#g' etc/org.apache.karaf.management.cfg; sed -i 's#8181#8182#g' etc/jetty.xml; sed -i 's#8443#8444#g' etc/jetty.xml"
+alias ho='cd ~/Dropbox/HO; java -jar ho.jar'
+alias ftest='mvnci -Dskip.test.fafram=false'
+path() {
+        ARG=${1:-.}
+        realpath $ARG | tr -d '\n' | xclip -selection c
+}
+alias dockermysql='docker run -it -e MYSQL_ROOT -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=rtgov -p 3306:3306 mysql56'
+
+export TERM="xterm-256color"

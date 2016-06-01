@@ -11,13 +11,13 @@ colorize() {
 }
 
 process_rebase() {
-	if [ -d $(git rev-parse --git-dir)/rebase-apply ]; then
-		CURRENT=$(cat `git rev-parse --git-dir`/rebase-apply/next)
-		TOTAL=$(cat `git rev-parse --git-dir`/rebase-apply/last)
-		echo "($(colorize $RED R) $(colorize $CYAN "$CURRENT|$TOTAL)") "
-	else
+	if [ -d $(git rev-parse --git-dir)/rebase-merge ]; then
 		CURRENT=$(cat `git rev-parse --git-dir`/rebase-merge/msgnum)
 		TOTAL=$(cat `git rev-parse --git-dir`/rebase-apply/end)
+		echo "($(colorize $RED R) $(colorize $CYAN "$CURRENT|$TOTAL)") "
+	else
+		CURRENT=$(cat `git rev-parse --git-dir`/rebase-apply/next)
+		TOTAL=$(cat `git rev-parse --git-dir`/rebase-apply/last)
 		echo "($(colorize $RED R) $(colorize $CYAN "$CURRENT|$TOTAL)") "
 	fi
 }
