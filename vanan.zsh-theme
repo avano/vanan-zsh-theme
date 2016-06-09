@@ -48,7 +48,7 @@ my_git_prompt_status() {
 	fi
 }
 
-PROMPT='$last_status $(colorize $GRAY %3~) $(git_prompt_info)$(get_git_status)$(my_git_prompt_status)$(colorize $WHITE ::) '
+PROMPT='$last_status $(colorize $WHITE %3~) $(git_prompt_info)$(get_git_status)$(my_git_prompt_status)$(colorize $WHITE ::) '
 RPROMPT='$(colorize $YELLOW "⌚ %*")'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{$CYAN} "
