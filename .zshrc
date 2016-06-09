@@ -42,9 +42,6 @@ ZSH_THEME="vanan"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# 10 second wait if you do something that will delete everything.
-setopt RM_STAR_WAIT
-
 # If a completion is performed with the cursor within a word, and a full completion is inserted, the cursor is moved to the end of the word
 setopt ALWAYS_TO_END
 
@@ -80,7 +77,7 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='none'
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-export PATH="$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$ANDROID_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+export PATH="$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
