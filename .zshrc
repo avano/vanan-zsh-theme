@@ -67,7 +67,7 @@ setopt HIST_SAVE_NO_DUPS
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found common-aliases dirhistory git-extras mvn zsh-syntax-highlighting)
+plugins=(git command-not-found common-aliases git-extras mvn zsh-autosuggestions zsh-syntax-highlighting dirhistory)
 # User configuration
 
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -77,10 +77,17 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='none'
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-export PATH="$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+
+# Source aliases and exports
+source ~/.aliases
+
+# Source functions
+source ~/.funcs
+
+export PATH="$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -121,6 +128,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+keychain id_rsa
+#. ~/.keychain/`uname -n`-sh
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -129,21 +139,3 @@ alias l='ls -CF'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# checkstyle-configuration
-export CHECKSTYLE_JAVA_CONFIG="/home/avano/work/git/qa-conventions-support/checkstyle-configuration/java-checkstyle.xml"
-export CHECKSTYLE_LOCATION="/home/avano/work/git/qa-conventions-support/checkstyle-configuration/checkstyle-6.16-all.jar"
-
-# checkstyle-extension
-export CHECKSTYLE_EXTENSION_LOCATION="/home/avano/work/git/qa-conventions-support/checkstyle-extension/target/checkstyle-extension-1.0.jar"
-
-# checkstyle-script
-export CHSTYLE_SCRIPT_LOCATION="/home/avano/work/git/qa-conventions-support/checkstyle-scripts"
-alias chstyle="$CHSTYLE_SCRIPT_LOCATION/chstyle.groovy"
-
-# git-hooks
-export GIT_HOOKS_LOCATION="/home/avano/work/git/qa-conventions-support/git-hooks"
-alias install-git-hooks="$GIT_HOOKS_LOCATION/install-git-hooks.groovy"
-
-# Source aliases and exports
-source ~/.aliases
