@@ -37,8 +37,10 @@ alias fuse61='rm -rf jboss-fuse-6.1.0.redhat-379; unzip $DIST/jboss-fuse-full-6.
 alias instance="sed -i 's#61616#61617#g' etc/system.properties; sed -i 's#8181#8182#g' etc/system.properties; sed -i 's#8181#8182#g' etc/org.ops4j.pax.web.cfg; sed -i 's#8101#8102#g' etc/org.apache.karaf.shell.cfg; sed -i 's#1099#1098#g' etc/org.apache.karaf.management.cfg; sed -i 's#44444#44445#g' etc/org.apache.karaf.management.cfg; sed -i 's#8181#8182#g' etc/jetty.xml; sed -i 's#8443#8444#g' etc/jetty.xml"
 alias ho='cd ~/Dropbox/HO; java -jar ho.jar'
 alias ftest='mvnci -Dskip.test.fafram=false'
-alias dockermysql='docker run -it -e MYSQL_ROOT -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=rtgov -p 3306:3306 mysql56'
-
+alias docker_mysql='docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=test -e MYSQL_USER=test -e MYSQL_PASSWORD=test -e MYSQL_DATABASE=test mysql:5.6'
+alias docker_postgres='docker run -d -p 5432:5432 -e POSTGRESQL_USER=test -e POSTGRESQL_PASS=test -e POSTGRESQL_DB=test orchardup/postgresql'
+alias docker_oracle='docker run -d -p 1521:1521 sath89/oracle-12c'
+alias rdesktop='rdesktop -r clipboard:CLIPBOARD -K -z -P -x lan -g 1366x768'
 export TERM="xterm-256color"
 # checkstyle-script
 alias chstyle="/home/avano/work/git/gitlab/qa-conventions-support/checkstyle-scripts/chstyle.groovy"

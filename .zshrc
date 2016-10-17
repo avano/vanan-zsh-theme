@@ -128,8 +128,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-keychain id_rsa
-#. ~/.keychain/`uname -n`-sh
+keychain --quiet id_rsa
 
 # some more ls aliases
 alias ll='ls -alF'

@@ -8,9 +8,18 @@ copy() {
 }
 rebase() {
         CURRENT=$(git rev-parse --abbrev-ref HEAD)
-        git checkout $1 || { echo 'Branch checkout failed' ; exit 1 }
-        git pull --rebase || { echo 'Pull failed' ; exit 2; }
-        git checkout ${CURRENT} || { echo 'Branch checkout failed' ; exit 3; }
-        git rebase $1 || { echo 'Rebase failed' ; exit 4; }
+        git checkout $1 || { echo 'Branch checkout failed' ; return }
+        git pull --rebase || { echo 'Pull failed' ; return }
+        git checkout ${CURRENT} || { echo 'Branch checkout failed' ; return }
+        git rebase $1 || { echo 'Rebase failed' ; return }
 }
-
+merge-to() {
+		CURRENT=$(git rev-parse --abbrev-ref HEAD)
+		if [ "${CURRENT}" = "$1" ]; then
+			echo "Can't merge to this branch"
+			return
+		fi
+		git checkout $1 || { echo 'Branch checkout failed' ; return }
+		git pull --rebase || { echo 'Pull failed' ; return }
+		git merge --no-ff ${CURRENT} || { echo 'Merge failed' ; return }
+}
