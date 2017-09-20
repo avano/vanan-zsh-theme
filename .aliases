@@ -47,3 +47,4 @@ alias chstyle="/home/avano/work/git/gitlab/qa-conventions-support/checkstyle-scr
 
 # git-hooks installation
 alias install-git-hooks="/home/avano/work/git/gitlab/qa-conventions-support/git-hooks/install-git-hooks.groovy"
+alias nova="source $WORK/nova.properties && nova"
