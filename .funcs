@@ -23,3 +23,13 @@ merge-to() {
 		git pull --rebase || { echo 'Pull failed' ; return }
 		git merge --no-ff ${CURRENT} || { echo 'Merge failed' ; return }
 }
+
+sedgrep() {
+	grep -rl "$1" . | xargs sed -i "s#$1#$2#g"
+}
+
+refresh_token() {
+	oc login -u developer -p developer https://192.168.99.100:8443
+	TOKEN=`oc whoami -t`
+	sed -i "s#syndesis.config.openshift.token.*#syndesis.config.openshift.token=$TOKEN#g" $GITHUB/syndesis-qe/test.properties
+}

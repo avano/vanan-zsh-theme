@@ -87,7 +87,7 @@ source ~/.aliases
 # Source functions
 source ~/.funcs
 
-export PATH="$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/home/avano/work/go/bin:/home/avano/work/scripts:$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
