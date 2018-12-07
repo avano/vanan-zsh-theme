@@ -87,7 +87,7 @@ source ~/.aliases
 # Source functions
 source ~/.funcs
 
-export PATH="/home/avano/work/go/bin:/home/avano/work/scripts:$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/usr/local/go/bin:/home/avano/work/scripts:$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -138,3 +138,4 @@ alias l='ls -CF'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+export GOPATH="/home/avano/work/go"

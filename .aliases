@@ -17,7 +17,7 @@ export CIOPS="$GITLAB/ci-ops-fuse"
 export DIST="$WORK/dist"
 export FUSE="/home/avano/work/fuse"
 export M2_HOME="/home/avano/work/apache-maven-3.5.3"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre"
+export JAVA_HOME="/usr/lib/jvm/java-8-oracle/jre"
 alias mvncist="mvn clean install -DskipTests=true"
 alias mvnci="mvn clean install"
 alias mvndebug='mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -Xnoagent -Djava.compiler=NONE" clean install'
@@ -42,6 +42,7 @@ alias ftest='mvnci -Dskip.test.fafram=false'
 alias docker_mysql='docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=test -e MYSQL_USER=test -e MYSQL_PASSWORD=test -e MYSQL_DATABASE=test mysql:5.6'
 alias docker_postgres='docker run -d -p 5432:5432 -e POSTGRESQL_USER=test -e POSTGRESQL_PASS=test -e POSTGRESQL_DB=test orchardup/postgresql'
 alias docker_oracle='docker run -d -p 1521:1521 sath89/oracle-12c'
+alias docker_bash='docker run -it --entrypoint /bin/bash'
 alias rdesktop='rdesktop -r clipboard:CLIPBOARD -K -z -P -x lan -g 1366x768'
 export TERM="xterm-256color"
 # checkstyle-script
@@ -50,4 +51,5 @@ alias chstyle="/home/avano/work/git/gitlab/qa-conventions-support/checkstyle-scr
 # git-hooks installation
 alias install-git-hooks="/home/avano/work/git/gitlab/qa-conventions-support/git-hooks/install-git-hooks.groovy"
 alias nova="source $WORK/nova.properties && nova"
-export GOPATH="/home/avano/work/go/workspace"
+
+alias wp="watch 'oc get pods'"
