@@ -42,6 +42,10 @@ ZSH_THEME="vanan"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
+HISTSIZE=999999999
+SAVEHIST=999999999
+
+
 # If a completion is performed with the cursor within a word, and a full completion is inserted, the cursor is moved to the end of the word
 setopt ALWAYS_TO_END
 
@@ -67,7 +71,7 @@ setopt HIST_SAVE_NO_DUPS
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found common-aliases git-extras mvn zsh-autosuggestions zsh-syntax-highlighting dirhistory)
+plugins=(git command-not-found mvn zsh-autosuggestions zsh-syntax-highlighting dirhistory)
 # User configuration
 
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -87,7 +91,7 @@ source ~/.aliases
 # Source functions
 source ~/.funcs
 
-export PATH="/usr/local/go/bin:/home/avano/work/scripts:$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/home/avano/work/go/bin:/usr/local/go/bin:/home/avano/work/scripts:$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -130,12 +134,8 @@ fi
 
 keychain --quiet id_rsa
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 export GOPATH="/home/avano/work/go"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

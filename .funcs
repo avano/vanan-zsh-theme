@@ -1,27 +1,32 @@
+#!/bin/bash
+
 path() {
-        ARG=${1:-.}
-        realpath ${ARG} | tr -d '\n' | xclip -selection c
+	ARG=${1:-.}
+	realpath "${ARG}" | tr -d '\n' | xclip -selection c
 }
+
 copy() {
-        ARG=${1:-.}
-        cat ${ARG} | xclip -selection c
+	ARG=${1:-.}
+	xclip -selection c < "${ARG}"
 }
+
 rebase() {
-        CURRENT=$(git rev-parse --abbrev-ref HEAD)
-        git checkout $1 || { echo 'Branch checkout failed' ; return }
-        git pull --rebase || { echo 'Pull failed' ; return }
-        git checkout ${CURRENT} || { echo 'Branch checkout failed' ; return }
-        git rebase $1 || { echo 'Rebase failed' ; return }
+	CURRENT=$(git rev-parse --abbrev-ref HEAD)
+	git checkout "$1" || { echo 'Branch checkout failed' ; return; }
+	git pull --rebase || { echo 'Pull failed' ; return; }
+	git checkout "${CURRENT}" || { echo 'Branch checkout failed' ; return; }
+	git rebase "$1" || { echo 'Rebase failed' ; return; }
 }
+
 merge-to() {
-		CURRENT=$(git rev-parse --abbrev-ref HEAD)
-		if [ "${CURRENT}" = "$1" ]; then
-			echo "Can't merge to this branch"
-			return
-		fi
-		git checkout $1 || { echo 'Branch checkout failed' ; return }
-		git pull --rebase || { echo 'Pull failed' ; return }
-		git merge --no-ff ${CURRENT} || { echo 'Merge failed' ; return }
+	CURRENT=$(git rev-parse --abbrev-ref HEAD)
+	if [ "${CURRENT}" = "$1" ]; then
+		echo "Can't merge to current branch"
+		return;
+	fi
+	git checkout "$1" || { echo 'Branch checkout failed' ; return; }
+	git pull --rebase || { echo 'Pull failed' ; return; }
+	git merge --no-ff "${CURRENT}" || { echo 'Merge failed' ; return; }
 }
 
 sedgrep() {
@@ -30,6 +35,30 @@ sedgrep() {
 
 refresh_token() {
 	oc login -u developer -p developer https://192.168.99.100:8443
-	TOKEN=`oc whoami -t`
-	sed -i "s#syndesis.config.openshift.token.*#syndesis.config.openshift.token=$TOKEN#g" $GITHUB/syndesis-qe/test.properties
+	TOKEN=$(oc whoami -t)
+	sed -i "s#syndesis.config.openshift.token.*#syndesis.config.openshift.token=$TOKEN#g" "$GITHUB"/syndesis-qe/test.properties
+}
+
+branch() {
+	git checkout -b "$1" >/dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		echo "Branch $1 already exists."
+		echo "Last commit: $(git log "$1" --pretty=format:'%ar by %an - %s' | head -n 1)"
+		read -q "REPLY?Delete and create a new branch $1? "
+		echo
+		if [[ $REPLY =~ ^[Yy]$ ]]
+		then
+			git branch -D "$1"
+			git checkout -b "$1"
+		fi
+	fi
+}
+
+pf() {
+	if [ $# -ne 2 ]; then
+		echo "Usage: pf pod port"
+		exit 0
+	fi
+	POD=$(oc get pods | grep "$1" | awk '{print $1}')
+	oc port-forward "${POD}" "$2"
 }
