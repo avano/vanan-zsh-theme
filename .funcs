@@ -59,6 +59,15 @@ pf() {
 		echo "Usage: pf pod port"
 		exit 0
 	fi
-	POD=$(oc get pods | grep "$1" | awk '{print $1}')
+	POD=$(oc get pods | grep "$1" | grep -v deploy | grep -v build | awk '{print $1}')
 	oc port-forward "${POD}" "$2"
+}
+
+lt() {
+	if [ $# -ne 1 ]; then
+		echo "Usage: lt pod"
+		exit 0
+	fi
+	POD=$(oc get pods | grep "$1" | grep -v deploy | grep -v build | awk '{print $1}')
+	oc logs -f "${POD}"
 }

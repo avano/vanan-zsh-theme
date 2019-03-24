@@ -60,3 +60,4 @@ alias install-git-hooks="/home/avano/work/git/gitlab/qa-conventions-support/git-
 alias nova="source $WORK/nova.properties && nova"
 
 alias wp="watch 'oc get pods'"
+alias v="vim"

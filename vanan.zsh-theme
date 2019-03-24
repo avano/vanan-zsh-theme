@@ -48,16 +48,14 @@ my_git_prompt_status() {
 	fi
 }
 
-PROMPT='$last_status $(colorize $WHITE %3~) $(git_prompt_info)$(get_git_status)$(my_git_prompt_status)$(colorize $WHITE ::) '
-RPROMPT='$(colorize $YELLOW "⌚ %*")'
+PROMPT='$last_status %F{$WHITE}%3~%f $(git_prompt_info)$(get_git_status)$(my_git_prompt_status)%F{$WHITE}::%f '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{$CYAN} "
 ZSH_THEME_GIT_PROMPT_SUFFIX=" "
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY=""
-ZSH_THEME_GIT_PROMPT_ADDED="$(colorize $GREEN ✚) "
-ZSH_THEME_GIT_PROMPT_MODIFIED="$(colorize $YELLOW ⚑) "
-ZSH_THEME_GIT_PROMPT_DELETED="$(colorize $RED ✖) "
-ZSH_THEME_GIT_PROMPT_RENAMED="$(colorize $BLUE ▴) "
-#ZSH_THEME_GIT_PROMPT_UNMERGED="$(colorize $CYAN §) "
-ZSH_THEME_GIT_PROMPT_UNTRACKED="$(colorize $GRAY ◒) "
+ZSH_THEME_GIT_PROMPT_ADDED="%F{$GREEN}✚%f "
+ZSH_THEME_GIT_PROMPT_MODIFIED="%F{$YELLOW}⚑%f "
+ZSH_THEME_GIT_PROMPT_DELETED="%F{$RED}✖%f "
+ZSH_THEME_GIT_PROMPT_RENAMED="%F{$BLUE}▴%f "
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{$GRAY}◒%f "

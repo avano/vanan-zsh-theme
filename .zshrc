@@ -40,7 +40,7 @@ ZSH_THEME="vanan"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 HISTSIZE=999999999
 SAVEHIST=999999999
@@ -49,7 +49,7 @@ SAVEHIST=999999999
 # If a completion is performed with the cursor within a word, and a full completion is inserted, the cursor is moved to the end of the word
 setopt ALWAYS_TO_END
 
-# If this is set, zsh sessions will append their history list to the history file, rather than replace it. 
+# If this is set, zsh sessions will append their history list to the history file, rather than replace it.
 setopt APPEND_HISTORY
 
 # Save each command's beginning timestamp (in seconds since the epoch) and the duration (in seconds) to the history file.
@@ -91,41 +91,13 @@ source ~/.aliases
 # Source functions
 source ~/.funcs
 
-export PATH="/home/avano/work/go/bin:/usr/local/go/bin:/home/avano/work/scripts:$M2_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Fonts with special characters: https://github.com/powerline/fonts
+# Path
+source ~/.homes
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -133,9 +105,5 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 keychain --quiet id_rsa
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-export GOPATH="/home/avano/work/go"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
